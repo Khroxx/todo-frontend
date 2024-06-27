@@ -1,5 +1,8 @@
-<form (ngSubmit)="login()">
-    <input type="text" [(ngModel)]="username" name="username" id="logName" required>
-    <input type="password" [(ngModel)]="password" name="password" id="logPass" required>
-    <button>Login</button>
-</form>
+<div class="loginForm">
+    <h1>Logge dich ein</h1>
+    <form #loginForm="ngForm" (ngSubmit)="login()">
+        <input type="text" [(ngModel)]="username" name="username" id="logName" required>
+        <input type="password" [(ngModel)]="password" name="password" id="logPass" required>
+        <button type="submit" [disabled]="loginForm.invalid">Login</button>
+    </form>
+</div>

@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -11,12 +12,21 @@ import { FormsModule } from '@angular/forms';
 })
 export class LoginComponent {
 
-  email: string = '';
+  username: string = '';
   password: string = '';
-  constructor(){
+  constructor(
+    private authService: AuthService
+  ){
 
   }
-  login(){
-    
+  async login(){
+    try {
+      let resp = await this.authService.loginWithUsernameAndPassword(this.username, this.password)
+      console.log(resp)
+    //redirect
+      }
+    catch(error){
+      console.error('error', error);
+    }
   }
 }
